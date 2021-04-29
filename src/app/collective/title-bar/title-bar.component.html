@@ -1,0 +1,18 @@
+<ion-grid>
+  <ion-row class="outer-box">
+    <ion-col size="2">
+      <img src="../../../assets/images/virus.png" width="30px" alt="">
+    </ion-col>
+    <ion-col size="8">
+      <ion-row class="title">
+        {{title}}
+      </ion-row>
+      <ion-row class="subtitle">
+        {{subtitle}}
+      </ion-row>
+    </ion-col>
+    <ion-col *ngIf="!noRefresh" (click)="hitRefresh()">
+      <button class="ref-button"><ion-icon name="refresh-circle-outline"></ion-icon></button>
+    </ion-col>
+  </ion-row>
+</ion-grid>

@@ -1,0 +1,16 @@
+<ion-content>
+  <app-title-bar title="Last 5 Days" noRefresh="yes" subtitle="Refresh to check for change"></app-title-bar>
+  <ion-row>
+    <ngx-charts-bar-vertical-2d *ngIf="barChartDataLoaded" [view]="view" [scheme]="colorScheme" [results]="barChartData"
+    [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend"
+    [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel"
+    [yAxisLabel]="yAxisLabel" [legendTitle]="legendTitle">
+  </ngx-charts-bar-vertical-2d>
+  </ion-row>
+  
+  <app-title-bar title="Resolved Cases" noRefresh="yes" subtitle="Does NOT include active cases"></app-title-bar>
+  <ion-row>
+    <ngx-charts-pie-grid *ngIf="pieChartDataLoaded" [view]="pieView" [scheme]="pieChartColorScheme" [results]="pieChartData">
+    </ngx-charts-pie-grid>
+  </ion-row>
+</ion-content>

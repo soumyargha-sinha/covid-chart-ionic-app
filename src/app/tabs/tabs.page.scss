@@ -1,0 +1,14 @@
+ion-tab-bar {
+    --background: rgb(65, 150, 207);
+    --color: #fff;
+    box-shadow: 2px 2px 3px #bfbfbf;
+}
+ion-tab-button.tab-selected {
+    --background: rgb(32, 88, 194) !important;
+    --color-selected: var(--ion-color-light);
+  }
+
+ion-tab-button ion-label {
+    margin-top: 5px;
+    text-transform: uppercase;
+}

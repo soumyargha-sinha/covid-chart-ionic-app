@@ -1,0 +1,99 @@
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large"></ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ng-container *ngIf="dataLoaded">
+    <app-title-bar (refresh)="refreshData()" [subtitle]="statewise[0].lastupdatedtime" title="overall stats">
+    </app-title-bar>
+    <ion-grid class="top-margin">
+      <ion-row>
+        <ion-col>
+          <ion-row>
+            <ion-col size="6" *ngFor="let stat of statKeys">
+              <div class="c-card-stat"
+                [ngStyle]="{'background': 'linear-gradient(to bottom right,'+ SPECS.icons[stat]['bgColor'] +','+ SPECS.icons[stat]['color']+')' }">
+                <div class="c-card-header delta">
+                  <span *ngIf="stat!=='active'">+</span>&nbsp;{{statewise[0]['delta'+stat]}}
+                </div>
+                <div class="c-card-body">{{statewise[0][stat]}}</div>
+                <div class="c-card-header">
+                  <ion-icon name="{{SPECS.icons[stat]['icon']}}"></ion-icon>
+                  {{stat}}
+                </div>
+              </div>
+            </ion-col>
+
+          </ion-row>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+    <app-title-bar (refresh)="refreshData()" title="Most Affected States" subtitle="Update time mentioned for each">
+    </app-title-bar>
+    <ion-grid class="top-margin">
+      <ion-row>
+        <ion-slides pager="true" [options]="slideOpts">
+          <ion-slide *ngFor="let state of statewise | slice:1:6">
+            <ion-card>
+              <ion-card-title class="state-header">{{ state['state'] }}</ion-card-title>
+              <ion-card-content>
+                <ion-chip *ngFor="let stat of statKeys" [ngStyle]="{'background-color': SPECS.icons[stat]['bgColor'] }">
+                  <ion-label>
+                    <ion-icon name="{{SPECS.icons[stat]['icon']}}"></ion-icon> &nbsp;{{state[stat]}}
+                  </ion-label>
+                </ion-chip>
+                <p> Last updated: {{state['lastupdatedtime']}}
+                </p>
+              </ion-card-content>
+            </ion-card>
+          </ion-slide>
+        </ion-slides>
+      </ion-row>
+    </ion-grid>
+    <app-title-bar (refresh)="refreshData()" title="statewise tally" subtitle="Update time mentioned for each">
+    </app-title-bar>
+    <ion-card class="state-card" *ngFor="let state of statewise | slice:1:statewise.length">
+      <ion-grid>
+        <ion-row class="state-card-header" (click)="selectState(state['state'])">
+          <ion-col>
+            <ion-icon class="expand-icon" name="chevron-down-circle-outline"></ion-icon>&nbsp;&nbsp;{{state['state']}}
+          </ion-col>
+        </ion-row>
+        <ion-row class="state-card-body">
+          <ion-col class="detail-stat-col" size="3" *ngFor="let stat of statKeys"
+            [ngStyle]="{'color': SPECS.icons[stat]['color'] }">{{state[stat]}} <span
+              *ngIf="stat!=='active'">(+{{state['delta'+stat]}})</span>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="selectedState===state['state']">
+          <ion-col>
+            <table>
+              <tr>
+                <th>District</th>
+                <th *ngFor="let stat of statKeys | slice:0:1" [ngStyle]="{'color': SPECS.icons[stat]['color'] }">
+                  {{stat}}
+                </th>
+                <th>+</th>
+              </tr>
+              <tr *ngFor="let district of districtwise[state['state']]">
+                <td>{{district['district']}}</td>
+                <td>{{district['confirmed']}}</td>
+                <td>{{district['delta']['confirmed']}}</td>
+              </tr>
+            </table>
+          </ion-col>
+          <ion-col size="12">Last updated: {{state['lastupdatedtime']}}
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </ng-container>
+  <ng-container *ngIf="!dataLoaded && !errorTriggered">
+    <app-loading></app-loading>
+  </ng-container>
+  <ng-container *ngIf="errorTriggered">
+    <app-error (retryEvent)="ngOnInit()"></app-error>
+  </ng-container>
+</ion-content>

@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700|Material+Icons');
+
+ion-content ion-toolbar {
+  --background: translucent;
+}
+
+.c-card-stat {
+  height: auto;
+  min-height: 80px;
+  color: #fff;
+  background-color: rgba(128, 128, 128, 0.87);
+  border-radius: 8px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  text-align: center;
+  box-shadow: 2px 2px 6px #bfbfbf;
+}
+
+.c-card-header {
+  width: 100%;
+  text-transform: uppercase;
+  font-size: 0.7em;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+.c-card-header ion-icon {
+  font-size: 1.5em;
+  vertical-align: middle;
+  margin-bottom: 2.5px;
+}
+
+.c-card-body {
+  font-weight: 300;
+  font-size: 1.3em;
+  margin-bottom: 4px;
+}
+
+ion-slide {
+  width: 80% !important;
+}
+
+ion-card {
+  background: #fff;
+}
+
+.state-header {
+  background: rgb(240, 105, 105);
+  color: #fff;
+  text-align: left;
+  padding: 5px 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 0.95em;
+  font-weight: bold;
+}
+
+ion-chip {
+  color: #fff;
+  letter-spacing: 1px;
+  font-size: 0.9em;
+}
+
+ion-card-content p {
+  font-size: 0.9em;
+}
+.state-card-header {
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+.expand-icon {
+  top: 12px !important;
+  font-size: 1.2em;
+  vertical-align: middle;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+  font-size: 0.8em;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+ion-content{
+  --ion-background-color: #efefef;
+}
+
+.top-margin {
+  margin-top: -10px;
+}
+
+.delta {
+  font-weight: 300;
+}
+
+.detail-stat-col {
+  text-align: center;
+}
+
+.swiper-pagination-fraction, .swiper-pagination-custom, .swiper-container-horizontal>.swiper-pagination-bullets {
+  display: none !important;
+}
